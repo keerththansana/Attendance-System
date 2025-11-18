@@ -1,70 +1,189 @@
-# Getting Started with Create React App
+# Attendance System – Server
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This directory contains the **backend server** for the Attendance System project.  
+It provides APIs for user management, classes, attendance tracking, and reporting.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 📌 Table of Contents
 
-### `npm start`
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Environment Variables](#environment-variables)
+  - [Running the Server](#running-the-server)
+- [API Endpoints](#api-endpoints)
+- [Database Models](#database-models)
+- [Contributing](#contributing)
+- [License](#license)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📖 Overview
 
-### `npm test`
+The **Attendance System Server** handles backend operations such as:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Authentication  
+- Class & user management  
+- Attendance creation and retrieval  
+- Secure API communication for the frontend  
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## ⭐ Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 🔐 JWT-based Authentication  
+- 👨‍🏫 Teacher & Student Roles  
+- 🏫 Class & Section Management  
+- 🗒 Attendance Recording  
+- 📊 Attendance Report Retrieval  
+- 📡 RESTful API Architecture  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 💻 Tech Stack
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+| Layer | Technology |
+|-------|------------|
+| Runtime | Node.js |
+| Backend Framework | Express.js |
+| Database | (MongoDB / MySQL / PostgreSQL – update accordingly) |
+| Authentication | JSON Web Tokens (JWT) |
+| Additional Tools | Middleware, CORS, dotenv, etc. |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 📁 Project Structure
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+server/
+│── controllers/ # Request handlers
+│── models/ # Database models
+│── routes/ # API route definitions
+│── middleware/ # Auth, validation, etc.
+│── config/ # Database and environment config
+│── utils/ # Helper functions
+│── index.js # Server entry point
+│── package.json
+│── .env.example
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🚀 Getting Started
 
-### Code Splitting
+### ✅ Prerequisites
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Make sure the following are installed:
 
-### Analyzing the Bundle Size
+- Node.js (v14+ recommended)
+- npm or yarn
+- A running database service (MongoDB/MySQL/etc.)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 📦 Installation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+cd server
+npm install
+```
 
-### Advanced Configuration
+## Or|
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+yarn install
+```
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+🔐 Environment Variables
 
-### `npm run build` fails to minify
+Create a .env file by copying:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+cp .env.example .env
+```
+
+Add and configure the required variables:
+
+```ini
+PORT=5000
+DB_HOST=your_host
+DB_NAME=your_db_name
+DB_USER=your_username
+DB_PASS=your_password
+JWT_SECRET=your_secret_key
+```
+
+## ▶ Running the Server
+
+Development Mode:
+```bash
+npm run dev
+```
+
+Production Mode:
+```bash
+npm start
+```
+
+The server will start on:
+```bash
+http://localhost:PORT/
+```
+
+## 🛠 API Endpoints
+
+| Method | Endpoint                    | Description             |
+| ------ | --------------------------- | ----------------------- |
+| POST   | `/api/auth/register`        | Register new user       |
+| POST   | `/api/auth/login`           | Login and receive token |
+| GET    | `/api/users/me`             | Get logged-in user info |
+| POST   | `/api/classes`              | Create a class/section  |
+| GET    | `/api/classes/:id`          | Get class details       |
+| POST   | `/api/attendance/mark`      | Mark attendance         |
+| GET    | `/api/attendance/class/:id` | View class attendance   |
+
+Update this list based on your actual routes.
+
+## 🗂 Database Models
+User
+id
+name
+email
+passwordHash
+role (teacher/student)
+
+## Class
+id
+title
+teacherId
+studentIds
+AttendanceSession
+id
+classId
+date
+sessionName
+
+## AttendanceRecord
+sessionId
+studentId
+status (present/absent)
+
+## 🤝 Contributing
+Contributions are welcome!
+1. Fork the project
+2. Create a new branch
+3. Commit your changes
+4. Submit a pull request
+
+## 📜 License
+This project is licensed under the MIT License.
+See the main project LICENSE file for details.
+
+## 👤 Author
+keerththansana
+GitHub: https://github.com/keerththansana
